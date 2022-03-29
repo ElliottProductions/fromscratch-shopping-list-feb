@@ -71,7 +71,7 @@ header img {
 }
 
 p {
-    margin: var(--gutter);
+    
 }
   
 footer {
@@ -170,4 +170,14 @@ footer {
 .inputdiv {
     width: 40px;
     height: 100px;
+}
+
+.add-task-button {
+    color:chartreuse;
+    background-color:black;
+    width: 100px;
+}
+
+.task-class {
+    
 }

@@ -37,6 +37,26 @@ export async function logout() {
     return (window.location.href = '../');
 }
 
+export async function createTask(taskName, taskHour, taskMinute, taskSecond){
+    const response = await client
+        .from('shopping-list')
+        .insert({ product: taskName,
+            time:`${taskHour}:${taskMinute}:${taskSecond}`,
+            is_bought: false });
+    
+    return response;
+
+}
+
+export async function getTasks(){
+    const response = await client
+        .from('shopping-list')
+        .select('*')
+        .order('time', { ascending: true });
+    
+    return response;
+
+}
 // function checkError({ data, error }) {
 //     return error ? console.error(error) : data;
 // }
