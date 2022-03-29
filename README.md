@@ -24,3 +24,17 @@ Additional considerations:
     -   What needs to live in a persistence layer?
 -   Is there some state we need to initialize?
 -   Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+
+![](./assets/taskwireframe.png)
+# Events
+//on submit, send new row to supabase
+    -get form data for task name
+    -get form data for task time
+        -insert new row to supabase
+    -async func getList
+    -render func displayList
+        -clear out DOM, use array to repopulate
+//on click, listItem becomes is_bought
+    -getList, render etc
+    //on click again, listItem dissappears
+

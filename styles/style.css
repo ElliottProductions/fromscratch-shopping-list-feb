@@ -129,3 +129,12 @@ footer {
 .auth-container button {
     margin: 10px;
 }
+
+.backscreen {
+    background-image: url('../assets/screenbackground.PNG');
+}
+
+.openingline {
+    color: chartreuse;
+    font-family: monospace;
+}
