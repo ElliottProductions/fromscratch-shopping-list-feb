@@ -138,3 +138,36 @@ footer {
     color: chartreuse;
     font-family: monospace;
 }
+
+.timediv {
+    display:flex;
+    flex-direction: row;
+}
+
+.timenotation {
+    color: chartreuse;
+    font-family: monospace;
+    width: 20px;
+  
+}
+
+.timeinput {
+    background-color: rgba(240, 248, 255, 0);
+    border:0px;
+    color:chartreuse;
+    width: 20px;
+    font-family: monospace;
+   
+}
+
+.taskinput {
+    background-color: rgba(240, 248, 255, 0);
+    border:0px;
+    color:chartreuse;
+    font-family: monospace;
+}
+
+.inputdiv {
+    width: 40px;
+    height: 100px;
+}
