@@ -69,10 +69,6 @@ h2 {
 header img {
     height: var(--header-height);
 }
-
-p {
-    
-}
   
 footer {
     position: fixed;

@@ -59,7 +59,7 @@ export async function getTasks(){
 }
 
 export async function completeTask(theTask){
-    const response = await client
+    await client
         .from('shopping-list')
         .update({ is_bought: true })
         .match({ id: theTask.id });
