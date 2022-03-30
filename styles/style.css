@@ -147,7 +147,8 @@ footer {
 .timenotation {
     color: chartreuse;
     font-family: monospace;
-    width: 20px;
+    width: 8px;
+    justify-content: center;
   
 }
 

@@ -1,4 +1,4 @@
-import { checkAuth, logout, createTask, getTasks, completeTask, deleteTask } from '../fetch-utils.js';
+import { checkAuth, logout, createTask, getTasks, completeTask, deleteTask, deleteAll } from '../fetch-utils.js';
 
 const inputForm = document.getElementById('input-form');
 checkAuth();
@@ -7,6 +7,7 @@ const taskDiv = document.querySelector('.listdiv');
 
 const logoutButton = document.getElementById('logout');
 const loadingSpinner = document.querySelector('.loading');
+const deleteButton = document.getElementById('delete');
 
 window.addEventListener('load', async ()=> {
     await displayTasks();
@@ -25,9 +26,14 @@ inputForm.addEventListener('submit', async (e)=>{
     
     taskDiv.textContent = '';
     displayTasks();
+    inputForm.reset();
 
 });
 
+deleteButton.addEventListener('click', async ()=>{
+    await deleteAll();
+    await displayTasks();
+});
 
 async function displayTasks(){
     loadingSpinner.classList.remove('invisible');
@@ -35,10 +41,12 @@ async function displayTasks(){
     const allTasks = await getTasks();
 
     for (let task of allTasks){
+        loadingSpinner.classList.remove('invisible');
         const newTaskEl = renderTask(task);
 
 
         newTaskEl.addEventListener('click', async ()=>{
+            loadingSpinner.classList.add('invisible');
             if (task.is_bought){
                 newTaskEl.remove();
                 await deleteTask(task);
@@ -48,6 +56,7 @@ async function displayTasks(){
                 await completeTask(task);
                 await displayTasks();
             }
+
         });
 
         if (task.is_bought){
@@ -55,9 +64,10 @@ async function displayTasks(){
         }
 
         taskDiv.append(newTaskEl);
+        
     }
+    
     loadingSpinner.classList.add('invisible');
-
 }
 
 function renderTask(aTask){

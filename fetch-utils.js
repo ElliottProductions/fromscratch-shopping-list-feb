@@ -75,4 +75,13 @@ export async function deleteTask(theTask){
         .match({ id: theTask.id });
 }
 
+export async function deleteAll(){
+
+    await client
+        .from('shopping-list')
+        .delete()
+        .match({ user_id: client.auth.user().id });
+        
+}
+
 
