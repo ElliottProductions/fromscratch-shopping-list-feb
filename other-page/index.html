@@ -13,15 +13,40 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="backscreen">
     <header>
         <div class="gutter-right logo">
-            <img src="../assets/big-logo.png" />
+            
         </div>
     </header>    
-    <button id="logout">Logout</button>
+    <button class="add-task-button" id="logout">Logout</button>
+    <button class="add-task-button" id="delete">Delete All</button>
+    <div class="loading"><span class="loading-text">L̵̺̦̹̗̻͖̮͕͙̹̋̅o̵͇̖͖͖͍̞͒͑ͅä̴̤͓̣͗̊͒̂̀́͂̈́̈̐̋ͅḍ̶̡̢̝͔̬͉̯͆͆̃͗͗̈̐̌̔̚i̷̢̨̪͔͈̰̲̬͋̌̄̾̑̍̌͗̅̐͌̚n̷̡̛̛̦͙͕͔̞̙̣̪̜̣̐̓̍̏̓͜g̶̨̢͖̣̬̰̤̺͔̠͓̫̥̣̬͋̈́̔̃̐̈́̋̈̄͘.̸̡̛̟̤̗͕̼̳̄̉͌̒̌̌͝.̴̦̲̤̞̭̘͗͋̓̿̌̆̀͒̂̏̊̕̚͠ͅ.̵̡̣̫̻̩̲̪̙͉̣̎͜</span></div>
     <main>
-        <h1>You are logged in!</h1>
+        
+        <br><br><br>
+        <h1 class="openingline">THERE'S A WAR ON, FOR YOUR TIME</h1>
+        
+        <div class="bigdiv">
+            <div class="inputdiv">
+                <form id="input-form">
+                    <input name="task-input"class="taskinput" placeholder="INPUT TASK HERE" required>
+                    <p class="entertime">ENTER TIME:</p>
+                    <div class="timediv">
+                        
+                        <input name="hour-input"class="timeinput" placeholder="00" required>
+                        <p class="timenotation">:</p>
+                        <input name="minute-input"class="timeinput" placeholder="00" required>
+                        <p class="timenotation">:</p>
+                        <input name="second-input"class="timeinput" placeholder="00" required>
+                    </div>
+                    <button class="add-task-button">ADD TASK</button>
+                </form>
+            </div>
+            <div class="listdiv">
+
+            </div>
+        </div>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
