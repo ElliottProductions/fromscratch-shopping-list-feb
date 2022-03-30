@@ -53,10 +53,26 @@ export async function getTasks(){
         .from('shopping-list')
         .select('*')
         .order('time', { ascending: true });
-    
-    return response;
+   
+    return response.body;
 
+}
+
+export async function completeTask(theTask){
+    const response = await client
+        .from('shopping-list')
+        .update({ is_bought: true })
+        .match({ id: theTask.id });
 }
 // function checkError({ data, error }) {
 //     return error ? console.error(error) : data;
 // }
+
+export async function deleteTask(theTask){
+    await client
+        .from('shopping-list')
+        .delete()
+        .match({ id: theTask.id });
+}
+
+

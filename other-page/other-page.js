@@ -1,4 +1,4 @@
-import { checkAuth, logout, createTask, getTasks } from '../fetch-utils.js';
+import { checkAuth, logout, createTask, getTasks, completeTask, deleteTask } from '../fetch-utils.js';
 
 const inputForm = document.getElementById('input-form');
 checkAuth();
@@ -6,8 +6,12 @@ checkAuth();
 const taskDiv = document.querySelector('.listdiv');
 
 const logoutButton = document.getElementById('logout');
+const loadingSpinner = document.querySelector('.loading');
 
-
+window.addEventListener('load', async ()=> {
+    await displayTasks();
+    loadingSpinner.classList.add('invisible');
+});
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -19,24 +23,51 @@ inputForm.addEventListener('submit', async (e)=>{
     const data = new FormData(inputForm);
     await createTask(data.get('task-input'), data.get('hour-input'), data.get('minute-input'), data.get('second-input'));
     
+    taskDiv.textContent = '';
     displayTasks();
 
 });
 
-async function displayTasks(){
-    taskDiv.textContent = '';
 
+async function displayTasks(){
+    loadingSpinner.classList.remove('invisible');
+    taskDiv.textContent = '';
     const allTasks = await getTasks();
 
-    for(let task of allTasks){
+    for (let task of allTasks){
         const newTaskEl = renderTask(task);
-    };
 
+
+        newTaskEl.addEventListener('click', async ()=>{
+            if (task.is_bought){
+                newTaskEl.remove();
+                await deleteTask(task);
+                await displayTasks();
+            } else {
+                newTaskEl.classList.add('task-done');
+                await completeTask(task);
+                await displayTasks();
+            }
+        });
+
+        if (task.is_bought){
+            newTaskEl.classList.add('task-done');
+        }
+
+        taskDiv.append(newTaskEl);
+    }
+    loadingSpinner.classList.add('invisible');
 
 }
 
 function renderTask(aTask){
     const taskDiv = document.createElement('div');
-    taskDiv.classList.add('.task-class');
+    taskDiv.classList.add('task-class');
+    const taskText = document.createElement('p');
+
+    taskText.textContent = `${aTask.product} at ${aTask.time}`;
+    taskDiv.append(taskText);
+
+    return taskDiv;
 
 }
