@@ -25,7 +25,7 @@ inputForm.addEventListener('submit', async (e)=>{
     await createTask(data.get('task-input'), data.get('hour-input'), data.get('minute-input'), data.get('second-input'));
     
     taskDiv.textContent = '';
-    displayTasks();
+    await displayTasks();
     inputForm.reset();
 
 });
